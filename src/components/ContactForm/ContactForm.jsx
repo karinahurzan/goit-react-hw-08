@@ -1,14 +1,26 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
-import { selectContacts } from '../../redux/contactsSlice';
+import { nanoid } from 'nanoid';
+import { FaUserPlus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contacts/operations';
+import { Button } from '@mui/material';
+
+const style = {
+  borderRadius: '5px',
+  padding: '0',
+  width: '320px',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '15px',
+  fontSize: '20px',
+};
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
 
   const initialValues = {
+    id: '',
     name: '',
     number: '',
   };
@@ -25,15 +37,7 @@ const ContactForm = () => {
   });
 
   const handleSubmit = (values, actions) => {
-    const nameExists = contacts.some(
-      contact => contact.name.toLowerCase() === values.name.toLowerCase()
-    );
-
-    if (nameExists) {
-      alert(`${values.name} is already in contacts`);
-      return;
-    }
-
+    values.id = nanoid();
     dispatch(addContact(values));
     actions.resetForm();
   };
@@ -47,17 +51,18 @@ const ContactForm = () => {
       <Form>
         <label>
           Name
-          <Field type="text" name="name" />
+          <Field type="text" name="name" placeholder="Contact name" />
           <ErrorMessage name="name" component="div" />
         </label>
-
         <label>
           Number
-          <Field type="text" name="number" />
+          <Field type="text" name="number" placeholder="123-45-67" />
           <ErrorMessage name="number" component="div" />
         </label>
-
-        <button type="submit">Add contact</button>
+        <Button variant="contained" color="success" sx={style} type="submit">
+          Add Contact
+          <FaUserPlus size={20} />
+        </Button>
       </Form>
     </Formik>
   );
