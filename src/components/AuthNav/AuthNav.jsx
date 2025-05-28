@@ -8,7 +8,7 @@ const builtClassName = ({ isActive }) => {
 
 export default function AuthNav() {
   return (
-    <div>
+    <div className={css.nav}>
       <NavLink className={builtClassName} to="/register">
         Register
       </NavLink>

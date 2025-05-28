@@ -3,6 +3,7 @@ import { useId } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { register } from '../../redux/auth/operations';
+import css from './RegistrationForm.module.css';
 
 const registerSchema = Yup.object().shape({
   name: Yup.string()
@@ -46,38 +47,43 @@ export default function RegistrationPage() {
       validationSchema={registerSchema}
       initialValues={initialValues}
     >
-      <Form>
-        <label htmlFor={nameFieldId}>
+      <Form className={css.form}>
+        <label className={css.labelName} htmlFor={nameFieldId}>
           <b>Name</b>
+
+          <Field
+            className={css.inputName}
+            id={nameFieldId}
+            name="name"
+            type="text"
+            placeholder="Enter your name"
+          />
+          <ErrorMessage name="name" component="span" className="error" />
         </label>
-        <Field
-          id={nameFieldId}
-          name="name"
-          type="text"
-          placeholder="Enter your name"
-        />
-        <ErrorMessage name="name" component="span" className="error" />
-        <label htmlFor={emailFieldId}>
+        <label className={css.labelName} htmlFor={emailFieldId}>
           <b>Email</b>
+
+          <Field
+            className={css.inputName}
+            id={emailFieldId}
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+          />
+          <ErrorMessage name="name" component="span" className="error" />
         </label>
-        <Field
-          id={emailFieldId}
-          name="email"
-          type="email"
-          placeholder="Enter your email"
-        />
-        <ErrorMessage name="name" component="span" className="error" />
-        <label htmlFor={pswrdFieldId}>
+        <label className={css.labelName} htmlFor={pswrdFieldId}>
           <b>Password</b>
+          <Field
+            className={css.inputName}
+            id={pswrdFieldId}
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+          />{' '}
+          <ErrorMessage name="password" component="span" className="error" />
         </label>
-        <Field
-          id={pswrdFieldId}
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-        />{' '}
-        <ErrorMessage name="password" component="span" className="error" />
-        <button type="submit">Register</button>
+        <button className={css.button} type="submit">Register</button>
       </Form>
     </Formik>
   );

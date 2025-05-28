@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { login } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import css from './LoginForm.module.css';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Must be a valid email!').required('Required'),
@@ -51,30 +52,34 @@ export default function LoginForm() {
       validationSchema={loginSchema}
       initialValues={initialValues}
     >
-      <Form>
-        <label htmlFor={emailFieldId}>
+      <Form className={css.form}>
+        <label className={css.labelName} htmlFor={emailFieldId}>
           <b>Email</b>
-        </label>
-        <Field
-          id={emailFieldId}
-          name="email"
-          type="email"
-          placeholder="Enter your email"
-        />
-        <ErrorMessage name="email" component="span" className="error" />
 
-        <label htmlFor={pswrdFieldId}>
+          <Field
+            className={css.inputName}
+            id={emailFieldId}
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+          />
+          <ErrorMessage name="email" component="span" className="error" />
+        </label>
+
+        <label className={css.labelName} htmlFor={pswrdFieldId}>
           <b>Password</b>
-        </label>
-        <Field
-          id={pswrdFieldId}
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-        />
-        <ErrorMessage name="password" component="span" className="error" />
 
-        <button type="submit">Login</button>
+          <Field
+            className={css.inputName}
+            id={pswrdFieldId}
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+          />
+          <ErrorMessage name="password" component="span" className="error" />
+        </label>
+
+        <button className={css.button} type="submit">Login</button>
       </Form>
     </Formik>
   );

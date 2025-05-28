@@ -19,14 +19,13 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <div className={css.container}>
-      <h1 className={css.title}>Phonebook</h1>
+    <>
       <ContactForm />
       <SearchBox />
       {error && <ErrorMessage />}
       {isLoading && <Loader />}
       {!isLoading && !error && <ContactList />}
-    </div>
+    </>
   );
 };
 

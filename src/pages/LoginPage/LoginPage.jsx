@@ -2,10 +2,12 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 
 const LoginPage = () => {
   return (
-    <>
-      <title>Login</title>
-      <LoginForm />
-    </>
+    <section className="section">
+      <div className="container">
+        <title>Login</title>
+        <LoginForm />
+      </div>
+    </section>
   );
 };
 

@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { FaUser, FaPhoneAlt } from 'react-icons/fa';
-import { Button } from '@mui/material';
 import {
   openDeleteModal,
   openEditModal,
   setContactToDelete,
 } from '../../redux/contacts/slice';
-import EditModal from '../Modals/EditModal';
-import DeleteModal from '../Modals/DeleteModal';
+import EditModal from '../EditModal/EditModal';
+import DeleteModal from '../DeleteModal/DeleteModal';
+import css from './Contact.module.css';
 
 export default function Contact({ contact }) {
   const dispatch = useDispatch();
@@ -26,35 +26,31 @@ export default function Contact({ contact }) {
       <EditModal />
       <DeleteModal />
       <div>
-        <div>
-          <p>
+        <div className={css.contactInfo}>
+          <p className={css.contactText}>
             <FaUser size={20} />
             {contact.name}
           </p>
-          <p>
+          <p className={css.contactText}>
             <FaPhoneAlt size={20} />
             {contact.number}
           </p>
         </div>
-        <div>
-          <Button
-            variant="outlined"
+        <div className={css.contactActions}>
+          <button
+            className={css.editButton}
             onClick={handleEditClick}
-            size="small"
             type="button"
-            color="primary"
           >
             Edit
-          </Button>
-          <Button
-            variant="outlined"
+          </button>
+          <button
+            className={css.deleteButton}
             onClick={handleDeleteClick}
-            size="small"
             type="button"
-            color="error"
           >
             Delete
-          </Button>
+          </button>
         </div>
       </div>
     </>

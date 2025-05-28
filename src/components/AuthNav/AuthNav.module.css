@@ -1,0 +1,18 @@
+.link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: color 250ms ease-in-out;
+}
+
+.active {
+  color: #584b33;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}

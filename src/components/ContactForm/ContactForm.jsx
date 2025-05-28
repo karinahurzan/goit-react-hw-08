@@ -4,17 +4,7 @@ import { nanoid } from 'nanoid';
 import { FaUserPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
-import { Button } from '@mui/material';
-
-const style = {
-  borderRadius: '5px',
-  padding: '0',
-  width: '320px',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '15px',
-  fontSize: '20px',
-};
+import css from './ContactForm.module.css';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -43,28 +33,44 @@ const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <label>
-          Name
-          <Field type="text" name="name" placeholder="Contact name" />
-          <ErrorMessage name="name" component="div" />
-        </label>
-        <label>
-          Number
-          <Field type="text" name="number" placeholder="123-45-67" />
-          <ErrorMessage name="number" component="div" />
-        </label>
-        <Button variant="contained" color="success" sx={style} type="submit">
-          Add Contact
-          <FaUserPlus size={20} />
-        </Button>
-      </Form>
-    </Formik>
+    <section className="section">
+      <div className="container">
+        <h1 className={css.title}>Phonebook</h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form className={css.form}>
+            <label className={css.labelName}>
+              <b>Name</b>
+              <Field
+                className={css.inputName}
+                type="text"
+                name="name"
+                placeholder="Contact name"
+              />
+              <ErrorMessage name="name" component="div" />
+            </label>
+
+            <label className={css.labelName}>
+              <b>Number</b>
+              <Field
+                className={css.inputName}
+                type="text"
+                name="number"
+                placeholder="123-45-67"
+              />
+              <ErrorMessage name="number" component="div" />
+            </label>
+            <button className={css.button} type="submit">
+              Add Contact
+              <FaUserPlus size={20} />
+            </button>
+          </Form>
+        </Formik>
+      </div>
+    </section>
   );
 };
 

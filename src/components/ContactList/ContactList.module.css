@@ -1,0 +1,59 @@
+.sectionContacts {
+  padding: 10px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .sectionContacts {
+    padding: 20px 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .sectionContacts {
+    padding: 30px 0;
+  }
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    padding: 20px 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .item {
+    flex-basis: calc((100% - 40px) / 2);
+}
+    
+}
+
+@media screen and (min-width: 1280px) {
+  .list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .item {
+    flex-basis: calc((100% - 60px) / 3);
+  }
+    
+}
