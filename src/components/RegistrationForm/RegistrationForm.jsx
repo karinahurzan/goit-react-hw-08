@@ -3,6 +3,7 @@ import { useId } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { register } from '../../redux/auth/operations';
+import toast from 'react-hot-toast';
 import css from './RegistrationForm.module.css';
 
 const registerSchema = Yup.object().shape({
@@ -16,6 +17,9 @@ const registerSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required'),
 });
+
+const notifySuccess = () => toast.success('registration success');
+const notifyError = () => toast.error('registration error');
 
 const initialValues = {
   name: '',
@@ -33,7 +37,14 @@ export default function RegistrationPage() {
         email: values.email,
         password: values.password,
       })
-    );
+    )
+      .unwrap()
+      .then(() => {
+        notifySuccess();
+      })
+      .catch(() => {
+        notifyError();
+      });
     resetForm();
   };
 
@@ -83,7 +94,9 @@ export default function RegistrationPage() {
           />{' '}
           <ErrorMessage name="password" component="span" className="error" />
         </label>
-        <button className={css.button} type="submit">Register</button>
+        <button className={css.button} type="submit">
+          Register
+        </button>
       </Form>
     </Formik>
   );
